@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       Welcome to Bookflip
       <AdvertsPage />
-      <CustomButton text="Sign up" />
-      <CustomButton text="Login" /> {/* aquí lo puedo cambiar */}
+      <CustomButton text="Sign up" onClick={(e) => console.log('apretao')} />
+      <CustomButton text="Login" onClick={(e) => console.log('apretao')}/> {/* aquí lo puedo cambiar */}
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import {useEffect, useState} from 'react';
+import { getLatestAdverts } from './service';
 const adverts = [
     {
       nombre: "El señor de los anillos",
@@ -41,6 +43,14 @@ const adverts = [
 
 
 const AdvertsPage = () => {
+    const [adverts, setAdverts] = useState ([])
+    
+    useEffect(()=>{
+        getLatestAdverts().then(adverts => setAdverts(adverts)); 
+    },[])
+
+   
+
     return (
         <div className="AdvertsPage" >
             <ul>
