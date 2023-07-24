@@ -1,9 +1,15 @@
 import './App.css';
+import AdvertsPage from './components/adverts/advertsPage';
+
+
 
 function App() {
-  return  <div className="App">
+  return  (
+  <div className="App">
       Welcome to Bookflip
-    </div>;
+     <AdvertsPage />
+    </div>
+  );
 }
 
 export default App;
