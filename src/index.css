@@ -13,6 +13,6 @@ button {
 }
 
 button.primary{
-    background-color: '#23A33D';
+    background-color: #23A33D;
     @apply bg-primary p-2 w-full text-white rounded-2xl;
 }
