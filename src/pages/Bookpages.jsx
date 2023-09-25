@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Genres from "../genres";
+import axios from "axios";
 
 export default function MyBooks() {
   const { action } = useParams();
-  const [title,useTitle] = useState('');
-  const [author,useAuthor] = useState('');
+  const [title,setTitle] = useState('');
+  const [author,setAuthor] = useState('');
   const [addedPhoto, useAddedPhoto] = useState ([]);
   const [photoLink, setPhotoLink] = useState ('');
   const [description,setDescription] = useState('');
@@ -18,8 +20,12 @@ export default function MyBooks() {
   function preInput (header) {
     return (
         <>
-        {inputHeader}</>
+        {inputHeader(header)}</>
     )
+  }
+  async function addPhotoLink(ev) {
+    ev.preventDefault();
+   await axios.post('upload-link-photo/' ,{link:photoLink})
   }
   return (
     <div>
@@ -50,14 +56,17 @@ export default function MyBooks() {
       {action === "new" && (
         <div>
           <form>
-            <h2 className=" text-2xl mt-4"> Title</h2>
-            <input type="text" placeholder="title" />
-            <h2 className="text-2xl mt-4"> Author</h2>
-            <input type="text" placeholder="author" />
-            <h2 className=" text-2xl mt-4"> Photos</h2>
+            {preInput ('Title')}
+            
+            <input type="text" value={title} onChange={ev=>setTitle(ev.target.value)} placeholder="title" />
+            {preInput ('Author')}
+            
+            <input type="text" value={author} onChange={ev=>setAuthor(ev.target.value)} placeholder="author" />
+            {preInput('Photos')}
+            
             <div className="flex gap-2">
-              <input type="text" placeholder={"Add using a link ... jpg"} />
-              <button className="bg-gray-200 px-4 rounded-3xl">
+              <input type="text" value={photoLink} onChange={ev=>setPhotoLink(ev.target.value)} placeholder={"Add using a link ... jpg"} />
+              <button onClick={addPhotoLink} className="bg-gray-200 px-4 rounded-3xl">
                 Add&nbsp;photo
               </button>
             </div>
@@ -83,7 +92,7 @@ export default function MyBooks() {
             </div>
             <h2 className=" text-2xl mt-4"> Description</h2>
             <p className="text-gray-500 text-sm">Share your feelings about this book</p>
-            <textarea />
+            <textarea value={description} onChange={ev=> setDescription(ev.target.value)}/>
             <h2 className=" text-2xl mt-4"> Pages</h2>
             <input type="number" placeholder="0"></input>
             <br></br>
@@ -93,6 +102,7 @@ export default function MyBooks() {
             <h2 className=" text-2xl mt-4"> Genres</h2>
             <p className="text-gray-500 text-sm">Choose the genre of your book</p>
             <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                <Genres selected={genres} onChange={setGenres} />
                 <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                     <input type="checkbox" name="" id="" />
                     <span>Mystery</span>
