@@ -33,7 +33,6 @@ export default function AccountPage() {
         let classes = 'inline-flex gap-2 py-2 px-6  text-white rounded-full ';
         if ( type === subpage ) {
             classes += ' bg-primary';
-            
         
         }else { classes += ' bg-gray-200';
 
@@ -76,8 +75,8 @@ export default function AccountPage() {
                 )}
                 {subpage === 'mybooks' && (
                     <Mybooks />
-                )};
+                )}
             
         </div>
-    );
+    )
 }
