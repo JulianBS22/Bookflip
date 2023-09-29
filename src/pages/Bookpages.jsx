@@ -90,14 +90,14 @@ export default function MyBooks() {
                 Add&nbsp;photo
               </button>
             </div>
-            <div className="mt-2 grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-2 lg:grid-cols-3">
               {addedPhoto.length > 0 &&
                 addedPhoto.map((link) => (
                   <div>
-                    <img src={"http://localhost:8000/uploads/" + link} />
+                    <img className="rounded-2xl" src={"http://localhost:8000/uploads/" + link} />
                   </div>
                 ))}
-              <button className=" flex item-center justify-center gap-1 border bg-transparent rounded-2xl p-8">
+              <button className=" flex items-center justify-center gap-1 border bg-transparent rounded-2xl p-8">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
